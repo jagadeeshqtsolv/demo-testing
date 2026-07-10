@@ -43,7 +43,8 @@ import {
 export class ProjectTaskPage {
   private static readonly L = {
     showAll: { strategy: 'role' as const, value: 'Show All (35)', role: 'link', shadowHost: 'lst-related-list-quick-links-grid', actionKind: 'link' as const },
-    projectTasks: { strategy: 'text' as const, value: 'Project Tasks (10+)', shadowHost: 'records-hoverable-link', actionKind: 'generic' as const },
+    projectTasks10Preview: { strategy: 'text' as const, value: 'Project Tasks (10+)', shadowHost: 'lst-related-list-quick-link', actionKind: 'generic' as const },
+    plannedProject: { strategy: 'text' as const, value: 'Audit EE Data', shadowHost: 'force-lookup', actionKind: 'generic' as const },
   } as const;
 
   constructor(private readonly page: Page) {}
@@ -56,12 +57,20 @@ export class ProjectTaskPage {
     await expectVisible(webLocator(this.page, ProjectTaskPage.L.showAll), timeoutMs, soft);
   }
 
-  async clickProjectTasks(): Promise<void> {
-    await clickWhenVisible(webLocator(this.page, ProjectTaskPage.L.projectTasks));
+  async clickProjectTasks10Preview(): Promise<void> {
+    await clickWhenVisible(webLocator(this.page, ProjectTaskPage.L.projectTasks10Preview));
   }
 
-  async expectProjectTasksVisible(timeoutMs = 30_000, soft = true): Promise<void> {
-    await expectVisible(webLocator(this.page, ProjectTaskPage.L.projectTasks), timeoutMs, soft);
+  async expectProjectTasks10PreviewVisible(timeoutMs = 30_000, soft = true): Promise<void> {
+    await expectVisible(webLocator(this.page, ProjectTaskPage.L.projectTasks10Preview), timeoutMs, soft);
+  }
+
+  async clickPlannedProject(): Promise<void> {
+    await clickWhenVisible(webLocator(this.page, ProjectTaskPage.L.plannedProject));
+  }
+
+  async expectPlannedProjectVisible(timeoutMs = 30_000, soft = true): Promise<void> {
+    await expectVisible(webLocator(this.page, ProjectTaskPage.L.plannedProject), timeoutMs, soft);
   }
 
 
@@ -117,56 +126,108 @@ export class ProjectTaskPage {
     await scrollIntoViewWhenVisible(webLocator(this.page, ProjectTaskPage.L.showAll));
   }
 
-  async doubleClickProjectTasks(): Promise<void> {
-    await doubleClickWhenVisible(webLocator(this.page, ProjectTaskPage.L.projectTasks));
+  async doubleClickProjectTasks10Preview(): Promise<void> {
+    await doubleClickWhenVisible(webLocator(this.page, ProjectTaskPage.L.projectTasks10Preview));
   }
 
-  async longPressProjectTasks(): Promise<void> {
-    await longPressWhenVisible(webLocator(this.page, ProjectTaskPage.L.projectTasks));
+  async longPressProjectTasks10Preview(): Promise<void> {
+    await longPressWhenVisible(webLocator(this.page, ProjectTaskPage.L.projectTasks10Preview));
   }
 
-  async expectProjectTasksHidden(timeoutMs = 30_000): Promise<void> {
-    await expectHidden(webLocator(this.page, ProjectTaskPage.L.projectTasks), timeoutMs);
+  async expectProjectTasks10PreviewHidden(timeoutMs = 30_000): Promise<void> {
+    await expectHidden(webLocator(this.page, ProjectTaskPage.L.projectTasks10Preview), timeoutMs);
   }
 
-  async expectProjectTasksText(expected: string, timeoutMs = 30_000): Promise<void> {
-    await expectText(webLocator(this.page, ProjectTaskPage.L.projectTasks), expected, timeoutMs);
+  async expectProjectTasks10PreviewText(expected: string, timeoutMs = 30_000): Promise<void> {
+    await expectText(webLocator(this.page, ProjectTaskPage.L.projectTasks10Preview), expected, timeoutMs);
   }
 
-  async expectProjectTasksContainsText(substring: string, timeoutMs = 30_000): Promise<void> {
-    await expectContainsText(webLocator(this.page, ProjectTaskPage.L.projectTasks), substring, timeoutMs);
+  async expectProjectTasks10PreviewContainsText(substring: string, timeoutMs = 30_000): Promise<void> {
+    await expectContainsText(webLocator(this.page, ProjectTaskPage.L.projectTasks10Preview), substring, timeoutMs);
   }
 
-  async expectProjectTasksValue(value: string, timeoutMs = 30_000): Promise<void> {
-    await expectValue(webLocator(this.page, ProjectTaskPage.L.projectTasks), value, timeoutMs);
+  async expectProjectTasks10PreviewValue(value: string, timeoutMs = 30_000): Promise<void> {
+    await expectValue(webLocator(this.page, ProjectTaskPage.L.projectTasks10Preview), value, timeoutMs);
   }
 
-  async expectProjectTasksEnabled(timeoutMs = 30_000): Promise<void> {
-    await expectEnabled(webLocator(this.page, ProjectTaskPage.L.projectTasks), timeoutMs);
+  async expectProjectTasks10PreviewEnabled(timeoutMs = 30_000): Promise<void> {
+    await expectEnabled(webLocator(this.page, ProjectTaskPage.L.projectTasks10Preview), timeoutMs);
   }
 
-  async expectProjectTasksDisabled(timeoutMs = 30_000): Promise<void> {
-    await expectDisabled(webLocator(this.page, ProjectTaskPage.L.projectTasks), timeoutMs);
+  async expectProjectTasks10PreviewDisabled(timeoutMs = 30_000): Promise<void> {
+    await expectDisabled(webLocator(this.page, ProjectTaskPage.L.projectTasks10Preview), timeoutMs);
   }
 
-  async expectProjectTasksChecked(timeoutMs = 30_000): Promise<void> {
-    await expectChecked(webLocator(this.page, ProjectTaskPage.L.projectTasks), timeoutMs);
+  async expectProjectTasks10PreviewChecked(timeoutMs = 30_000): Promise<void> {
+    await expectChecked(webLocator(this.page, ProjectTaskPage.L.projectTasks10Preview), timeoutMs);
   }
 
-  async expectProjectTasksUnchecked(timeoutMs = 30_000): Promise<void> {
-    await expectUnchecked(webLocator(this.page, ProjectTaskPage.L.projectTasks), timeoutMs);
+  async expectProjectTasks10PreviewUnchecked(timeoutMs = 30_000): Promise<void> {
+    await expectUnchecked(webLocator(this.page, ProjectTaskPage.L.projectTasks10Preview), timeoutMs);
   }
 
-  async expectProjectTasksFocused(timeoutMs = 30_000): Promise<void> {
-    await expectFocused(webLocator(this.page, ProjectTaskPage.L.projectTasks), timeoutMs);
+  async expectProjectTasks10PreviewFocused(timeoutMs = 30_000): Promise<void> {
+    await expectFocused(webLocator(this.page, ProjectTaskPage.L.projectTasks10Preview), timeoutMs);
   }
 
-  async expectProjectTasksCount(count: number, timeoutMs = 30_000): Promise<void> {
-    await expectCount(webLocator(this.page, ProjectTaskPage.L.projectTasks), count, timeoutMs);
+  async expectProjectTasks10PreviewCount(count: number, timeoutMs = 30_000): Promise<void> {
+    await expectCount(webLocator(this.page, ProjectTaskPage.L.projectTasks10Preview), count, timeoutMs);
   }
 
-  async scrollProjectTasksIntoView(): Promise<void> {
-    await scrollIntoViewWhenVisible(webLocator(this.page, ProjectTaskPage.L.projectTasks));
+  async scrollProjectTasks10PreviewIntoView(): Promise<void> {
+    await scrollIntoViewWhenVisible(webLocator(this.page, ProjectTaskPage.L.projectTasks10Preview));
+  }
+
+  async doubleClickPlannedProject(): Promise<void> {
+    await doubleClickWhenVisible(webLocator(this.page, ProjectTaskPage.L.plannedProject));
+  }
+
+  async longPressPlannedProject(): Promise<void> {
+    await longPressWhenVisible(webLocator(this.page, ProjectTaskPage.L.plannedProject));
+  }
+
+  async expectPlannedProjectHidden(timeoutMs = 30_000): Promise<void> {
+    await expectHidden(webLocator(this.page, ProjectTaskPage.L.plannedProject), timeoutMs);
+  }
+
+  async expectPlannedProjectText(expected: string, timeoutMs = 30_000): Promise<void> {
+    await expectText(webLocator(this.page, ProjectTaskPage.L.plannedProject), expected, timeoutMs);
+  }
+
+  async expectPlannedProjectContainsText(substring: string, timeoutMs = 30_000): Promise<void> {
+    await expectContainsText(webLocator(this.page, ProjectTaskPage.L.plannedProject), substring, timeoutMs);
+  }
+
+  async expectPlannedProjectValue(value: string, timeoutMs = 30_000): Promise<void> {
+    await expectValue(webLocator(this.page, ProjectTaskPage.L.plannedProject), value, timeoutMs);
+  }
+
+  async expectPlannedProjectEnabled(timeoutMs = 30_000): Promise<void> {
+    await expectEnabled(webLocator(this.page, ProjectTaskPage.L.plannedProject), timeoutMs);
+  }
+
+  async expectPlannedProjectDisabled(timeoutMs = 30_000): Promise<void> {
+    await expectDisabled(webLocator(this.page, ProjectTaskPage.L.plannedProject), timeoutMs);
+  }
+
+  async expectPlannedProjectChecked(timeoutMs = 30_000): Promise<void> {
+    await expectChecked(webLocator(this.page, ProjectTaskPage.L.plannedProject), timeoutMs);
+  }
+
+  async expectPlannedProjectUnchecked(timeoutMs = 30_000): Promise<void> {
+    await expectUnchecked(webLocator(this.page, ProjectTaskPage.L.plannedProject), timeoutMs);
+  }
+
+  async expectPlannedProjectFocused(timeoutMs = 30_000): Promise<void> {
+    await expectFocused(webLocator(this.page, ProjectTaskPage.L.plannedProject), timeoutMs);
+  }
+
+  async expectPlannedProjectCount(count: number, timeoutMs = 30_000): Promise<void> {
+    await expectCount(webLocator(this.page, ProjectTaskPage.L.plannedProject), count, timeoutMs);
+  }
+
+  async scrollPlannedProjectIntoView(): Promise<void> {
+    await scrollIntoViewWhenVisible(webLocator(this.page, ProjectTaskPage.L.plannedProject));
   }
 
 }

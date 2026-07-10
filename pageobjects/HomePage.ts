@@ -42,15 +42,19 @@ import {
 
 export class HomePage {
   private static readonly L = {
-    doMoreWithSearch: { strategy: 'css' as const, value: 'div', shadowHost: '#preview', actionKind: 'generic' as const },
+    globalsearch: { strategy: 'role' as const, value: 'Search', role: 'button', actionKind: 'button' as const },
     search: { strategy: 'placeholder' as const, value: 'Search...', shadowHost: 'lightning-primitive-input-simple', actionKind: 'textbox' as const },
-    globalSearch: { strategy: 'role' as const, value: 'Search', role: 'button', actionKind: 'button' as const },
+    selectedproject: { strategy: 'text' as const, value: 'Perry\'s', shadowHost: 'lightning-formatted-rich-text', actionKind: 'generic' as const },
   } as const;
 
   constructor(private readonly page: Page) {}
 
-  async expectDoMoreWithSearchVisible(timeoutMs = 30_000, soft = true): Promise<void> {
-    await expectVisible(webLocator(this.page, HomePage.L.doMoreWithSearch), timeoutMs, soft);
+  async clickGlobalsearch(): Promise<void> {
+    await clickWhenVisible(webLocator(this.page, HomePage.L.globalsearch));
+  }
+
+  async expectGlobalsearchVisible(timeoutMs = 30_000, soft = true): Promise<void> {
+    await expectVisible(webLocator(this.page, HomePage.L.globalsearch), timeoutMs, soft);
   }
 
   async fillSearch(value: string): Promise<void> {
@@ -69,69 +73,65 @@ export class HomePage {
     await expectVisible(webLocator(this.page, HomePage.L.search), timeoutMs, soft);
   }
 
-  async clickGlobalSearch(): Promise<void> {
-    await clickWhenVisible(webLocator(this.page, HomePage.L.globalSearch));
+  async clickSelectedproject(): Promise<void> {
+    await clickWhenVisible(webLocator(this.page, HomePage.L.selectedproject));
   }
 
-  async expectGlobalSearchVisible(timeoutMs = 30_000, soft = true): Promise<void> {
-    await expectVisible(webLocator(this.page, HomePage.L.globalSearch), timeoutMs, soft);
+  async expectSelectedprojectVisible(timeoutMs = 30_000, soft = true): Promise<void> {
+    await expectVisible(webLocator(this.page, HomePage.L.selectedproject), timeoutMs, soft);
   }
 
 
-  async clickDoMoreWithSearch(): Promise<void> {
-    await clickWhenVisible(webLocator(this.page, HomePage.L.doMoreWithSearch));
+  async doubleClickGlobalsearch(): Promise<void> {
+    await doubleClickWhenVisible(webLocator(this.page, HomePage.L.globalsearch));
   }
 
-  async doubleClickDoMoreWithSearch(): Promise<void> {
-    await doubleClickWhenVisible(webLocator(this.page, HomePage.L.doMoreWithSearch));
+  async longPressGlobalsearch(): Promise<void> {
+    await longPressWhenVisible(webLocator(this.page, HomePage.L.globalsearch));
   }
 
-  async longPressDoMoreWithSearch(): Promise<void> {
-    await longPressWhenVisible(webLocator(this.page, HomePage.L.doMoreWithSearch));
+  async expectGlobalsearchHidden(timeoutMs = 30_000): Promise<void> {
+    await expectHidden(webLocator(this.page, HomePage.L.globalsearch), timeoutMs);
   }
 
-  async expectDoMoreWithSearchHidden(timeoutMs = 30_000): Promise<void> {
-    await expectHidden(webLocator(this.page, HomePage.L.doMoreWithSearch), timeoutMs);
+  async expectGlobalsearchText(expected: string, timeoutMs = 30_000): Promise<void> {
+    await expectText(webLocator(this.page, HomePage.L.globalsearch), expected, timeoutMs);
   }
 
-  async expectDoMoreWithSearchText(expected: string, timeoutMs = 30_000): Promise<void> {
-    await expectText(webLocator(this.page, HomePage.L.doMoreWithSearch), expected, timeoutMs);
+  async expectGlobalsearchContainsText(substring: string, timeoutMs = 30_000): Promise<void> {
+    await expectContainsText(webLocator(this.page, HomePage.L.globalsearch), substring, timeoutMs);
   }
 
-  async expectDoMoreWithSearchContainsText(substring: string, timeoutMs = 30_000): Promise<void> {
-    await expectContainsText(webLocator(this.page, HomePage.L.doMoreWithSearch), substring, timeoutMs);
+  async expectGlobalsearchValue(value: string, timeoutMs = 30_000): Promise<void> {
+    await expectValue(webLocator(this.page, HomePage.L.globalsearch), value, timeoutMs);
   }
 
-  async expectDoMoreWithSearchValue(value: string, timeoutMs = 30_000): Promise<void> {
-    await expectValue(webLocator(this.page, HomePage.L.doMoreWithSearch), value, timeoutMs);
+  async expectGlobalsearchEnabled(timeoutMs = 30_000): Promise<void> {
+    await expectEnabled(webLocator(this.page, HomePage.L.globalsearch), timeoutMs);
   }
 
-  async expectDoMoreWithSearchEnabled(timeoutMs = 30_000): Promise<void> {
-    await expectEnabled(webLocator(this.page, HomePage.L.doMoreWithSearch), timeoutMs);
+  async expectGlobalsearchDisabled(timeoutMs = 30_000): Promise<void> {
+    await expectDisabled(webLocator(this.page, HomePage.L.globalsearch), timeoutMs);
   }
 
-  async expectDoMoreWithSearchDisabled(timeoutMs = 30_000): Promise<void> {
-    await expectDisabled(webLocator(this.page, HomePage.L.doMoreWithSearch), timeoutMs);
+  async expectGlobalsearchChecked(timeoutMs = 30_000): Promise<void> {
+    await expectChecked(webLocator(this.page, HomePage.L.globalsearch), timeoutMs);
   }
 
-  async expectDoMoreWithSearchChecked(timeoutMs = 30_000): Promise<void> {
-    await expectChecked(webLocator(this.page, HomePage.L.doMoreWithSearch), timeoutMs);
+  async expectGlobalsearchUnchecked(timeoutMs = 30_000): Promise<void> {
+    await expectUnchecked(webLocator(this.page, HomePage.L.globalsearch), timeoutMs);
   }
 
-  async expectDoMoreWithSearchUnchecked(timeoutMs = 30_000): Promise<void> {
-    await expectUnchecked(webLocator(this.page, HomePage.L.doMoreWithSearch), timeoutMs);
+  async expectGlobalsearchFocused(timeoutMs = 30_000): Promise<void> {
+    await expectFocused(webLocator(this.page, HomePage.L.globalsearch), timeoutMs);
   }
 
-  async expectDoMoreWithSearchFocused(timeoutMs = 30_000): Promise<void> {
-    await expectFocused(webLocator(this.page, HomePage.L.doMoreWithSearch), timeoutMs);
+  async expectGlobalsearchCount(count: number, timeoutMs = 30_000): Promise<void> {
+    await expectCount(webLocator(this.page, HomePage.L.globalsearch), count, timeoutMs);
   }
 
-  async expectDoMoreWithSearchCount(count: number, timeoutMs = 30_000): Promise<void> {
-    await expectCount(webLocator(this.page, HomePage.L.doMoreWithSearch), count, timeoutMs);
-  }
-
-  async scrollDoMoreWithSearchIntoView(): Promise<void> {
-    await scrollIntoViewWhenVisible(webLocator(this.page, HomePage.L.doMoreWithSearch));
+  async scrollGlobalsearchIntoView(): Promise<void> {
+    await scrollIntoViewWhenVisible(webLocator(this.page, HomePage.L.globalsearch));
   }
 
   async typeTextSearch(value: string): Promise<void> {
@@ -182,56 +182,56 @@ export class HomePage {
     await scrollIntoViewWhenVisible(webLocator(this.page, HomePage.L.search));
   }
 
-  async doubleClickGlobalSearch(): Promise<void> {
-    await doubleClickWhenVisible(webLocator(this.page, HomePage.L.globalSearch));
+  async doubleClickSelectedproject(): Promise<void> {
+    await doubleClickWhenVisible(webLocator(this.page, HomePage.L.selectedproject));
   }
 
-  async longPressGlobalSearch(): Promise<void> {
-    await longPressWhenVisible(webLocator(this.page, HomePage.L.globalSearch));
+  async longPressSelectedproject(): Promise<void> {
+    await longPressWhenVisible(webLocator(this.page, HomePage.L.selectedproject));
   }
 
-  async expectGlobalSearchHidden(timeoutMs = 30_000): Promise<void> {
-    await expectHidden(webLocator(this.page, HomePage.L.globalSearch), timeoutMs);
+  async expectSelectedprojectHidden(timeoutMs = 30_000): Promise<void> {
+    await expectHidden(webLocator(this.page, HomePage.L.selectedproject), timeoutMs);
   }
 
-  async expectGlobalSearchText(expected: string, timeoutMs = 30_000): Promise<void> {
-    await expectText(webLocator(this.page, HomePage.L.globalSearch), expected, timeoutMs);
+  async expectSelectedprojectText(expected: string, timeoutMs = 30_000): Promise<void> {
+    await expectText(webLocator(this.page, HomePage.L.selectedproject), expected, timeoutMs);
   }
 
-  async expectGlobalSearchContainsText(substring: string, timeoutMs = 30_000): Promise<void> {
-    await expectContainsText(webLocator(this.page, HomePage.L.globalSearch), substring, timeoutMs);
+  async expectSelectedprojectContainsText(substring: string, timeoutMs = 30_000): Promise<void> {
+    await expectContainsText(webLocator(this.page, HomePage.L.selectedproject), substring, timeoutMs);
   }
 
-  async expectGlobalSearchValue(value: string, timeoutMs = 30_000): Promise<void> {
-    await expectValue(webLocator(this.page, HomePage.L.globalSearch), value, timeoutMs);
+  async expectSelectedprojectValue(value: string, timeoutMs = 30_000): Promise<void> {
+    await expectValue(webLocator(this.page, HomePage.L.selectedproject), value, timeoutMs);
   }
 
-  async expectGlobalSearchEnabled(timeoutMs = 30_000): Promise<void> {
-    await expectEnabled(webLocator(this.page, HomePage.L.globalSearch), timeoutMs);
+  async expectSelectedprojectEnabled(timeoutMs = 30_000): Promise<void> {
+    await expectEnabled(webLocator(this.page, HomePage.L.selectedproject), timeoutMs);
   }
 
-  async expectGlobalSearchDisabled(timeoutMs = 30_000): Promise<void> {
-    await expectDisabled(webLocator(this.page, HomePage.L.globalSearch), timeoutMs);
+  async expectSelectedprojectDisabled(timeoutMs = 30_000): Promise<void> {
+    await expectDisabled(webLocator(this.page, HomePage.L.selectedproject), timeoutMs);
   }
 
-  async expectGlobalSearchChecked(timeoutMs = 30_000): Promise<void> {
-    await expectChecked(webLocator(this.page, HomePage.L.globalSearch), timeoutMs);
+  async expectSelectedprojectChecked(timeoutMs = 30_000): Promise<void> {
+    await expectChecked(webLocator(this.page, HomePage.L.selectedproject), timeoutMs);
   }
 
-  async expectGlobalSearchUnchecked(timeoutMs = 30_000): Promise<void> {
-    await expectUnchecked(webLocator(this.page, HomePage.L.globalSearch), timeoutMs);
+  async expectSelectedprojectUnchecked(timeoutMs = 30_000): Promise<void> {
+    await expectUnchecked(webLocator(this.page, HomePage.L.selectedproject), timeoutMs);
   }
 
-  async expectGlobalSearchFocused(timeoutMs = 30_000): Promise<void> {
-    await expectFocused(webLocator(this.page, HomePage.L.globalSearch), timeoutMs);
+  async expectSelectedprojectFocused(timeoutMs = 30_000): Promise<void> {
+    await expectFocused(webLocator(this.page, HomePage.L.selectedproject), timeoutMs);
   }
 
-  async expectGlobalSearchCount(count: number, timeoutMs = 30_000): Promise<void> {
-    await expectCount(webLocator(this.page, HomePage.L.globalSearch), count, timeoutMs);
+  async expectSelectedprojectCount(count: number, timeoutMs = 30_000): Promise<void> {
+    await expectCount(webLocator(this.page, HomePage.L.selectedproject), count, timeoutMs);
   }
 
-  async scrollGlobalSearchIntoView(): Promise<void> {
-    await scrollIntoViewWhenVisible(webLocator(this.page, HomePage.L.globalSearch));
+  async scrollSelectedprojectIntoView(): Promise<void> {
+    await scrollIntoViewWhenVisible(webLocator(this.page, HomePage.L.selectedproject));
   }
 
 }
