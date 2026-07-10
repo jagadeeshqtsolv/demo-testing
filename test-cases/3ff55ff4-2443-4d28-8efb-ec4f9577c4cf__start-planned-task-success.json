@@ -1,0 +1,172 @@
+{
+  "id": "start-planned-task-success",
+  "testPlanId": "3ff55ff4-2443-4d28-8efb-ec4f9577c4cf",
+  "requirementId": "4f657384-5930-4064-a8a3-501b0c22e0a0",
+  "suiteName": "Certinia PSA - Start Planned Project Task",
+  "case": {
+    "id": "start-planned-task-success",
+    "title": "Start a Planned Project Task and verify Status, Started, and Actual Start Date update",
+    "priority": "P0",
+    "platforms": [
+      "chrome"
+    ],
+    "preconditions": [],
+    "steps": [
+      {
+        "id": "s1",
+        "action": "openUrl",
+        "targetDescription": "Open Salesforce Home page",
+        "value": "https://ukgsf--stest.sandbox.lightning.force.com/lightning/page/home"
+      },
+      {
+        "id": "s2",
+        "action": "waitForVisible",
+        "targetDescription": "Search input visible",
+        "locatorHint": "input[title='Search']",
+        "screenName": "Home",
+        "pageObjectMethod": "expectSearchVisible"
+      },
+      {
+        "id": "s3",
+        "action": "fill",
+        "targetDescription": "Type full project name in Search",
+        "locatorHint": "input[title='Search']",
+        "screenName": "Home",
+        "pageObjectMethod": "fillSearch",
+        "value": "Perry's Restaurants, - Q-453446 - Ready Fixed Fee Implementation"
+      },
+      {
+        "id": "s4",
+        "action": "waitForVisible",
+        "targetDescription": "Search result for the exact Project appears",
+        "locatorHint": "div[role='listbox'] a:has-text(\"Perry's Restaurants, - Q-453446 - Ready Fixed Fee Implementation\")",
+        "screenName": "Home",
+        "pageObjectMethod": "expectSelectedprojectValue"
+      },
+      {
+        "id": "s5",
+        "action": "tap",
+        "targetDescription": "Select the Project from search results",
+        "locatorHint": "div[role='listbox'] a:has-text(\"Perry's Restaurants, - Q-453446 - Ready Fixed Fee Implementation\")",
+        "screenName": "Home",
+        "pageObjectMethod": "clickSelectedproject"
+      },
+      {
+        "id": "s7",
+        "action": "scrollIntoView",
+        "targetDescription": "Scroll to Related Lists section",
+        "locatorHint": "div.slds-card__header-title:has-text('Related Lists')"
+      },
+      {
+        "id": "s8",
+        "action": "tap",
+        "targetDescription": "Click Show All in Related Lists",
+        "locatorHint": "a[title='Show All']"
+      },
+      {
+        "id": "s9",
+        "action": "waitForVisible",
+        "targetDescription": "Related Lists page loaded",
+        "locatorHint": "h1:has-text('Related Lists')"
+      },
+      {
+        "id": "s10",
+        "action": "tap",
+        "targetDescription": "Open Project Tasks related list",
+        "locatorHint": "a[title='Project Tasks']"
+      },
+      {
+        "id": "s11",
+        "action": "waitForVisible",
+        "targetDescription": "Project Tasks list rendered",
+        "locatorHint": "table[role='grid']"
+      },
+      {
+        "id": "s12",
+        "action": "tap",
+        "targetDescription": "Open a task where Status = Planned",
+        "locatorHint": "table[role='grid'] tbody tr:has(td[data-label='Status'] >> text=Planned) a[role='link']"
+      },
+      {
+        "id": "s13",
+        "action": "waitForVisible",
+        "targetDescription": "Project Task details page header visible",
+        "locatorHint": "records-lwc-detail-panel h1[title='Project Task']"
+      },
+      {
+        "id": "s14",
+        "action": "assertContainsText",
+        "targetDescription": "Verify Status field shows Planned",
+        "locatorHint": "[data-field='Status']",
+        "assertion": "Planned"
+      },
+      {
+        "id": "s15",
+        "action": "assertVisible",
+        "targetDescription": "Verify Started field is present",
+        "locatorHint": "[data-field='Started']"
+      },
+      {
+        "id": "s16",
+        "action": "assertVisible",
+        "targetDescription": "Verify Actual Start Date field is present",
+        "locatorHint": "[data-field='Actual Start Date']"
+      },
+      {
+        "id": "s17",
+        "action": "assertVisible",
+        "targetDescription": "Verify Start button is visible",
+        "locatorHint": "button:has-text('Start')"
+      },
+      {
+        "id": "s18",
+        "action": "assertEnabled",
+        "targetDescription": "Verify Start button is enabled",
+        "locatorHint": "button:has-text('Start')"
+      },
+      {
+        "id": "s19",
+        "action": "tap",
+        "targetDescription": "Click Start to begin the task",
+        "locatorHint": "button:has-text('Start')"
+      },
+      {
+        "id": "s20",
+        "action": "waitForVisible",
+        "targetDescription": "Wait for Status to update to Started",
+        "locatorHint": "[data-field='Status']"
+      },
+      {
+        "id": "s21",
+        "action": "assertContainsText",
+        "targetDescription": "Confirm Status changed to Started",
+        "locatorHint": "[data-field='Status']",
+        "assertion": "Started"
+      },
+      {
+        "id": "s22",
+        "action": "assertContainsText",
+        "targetDescription": "Confirm Started field indicates Checked/selected",
+        "locatorHint": "[data-field='Started']",
+        "assertion": "Checked"
+      },
+      {
+        "id": "s23",
+        "action": "assertContainsText",
+        "targetDescription": "Confirm Actual Start Date is set to current date",
+        "locatorHint": "[data-field='Actual Start Date']",
+        "assertion": "{{today}}"
+      },
+      {
+        "id": "s24",
+        "action": "assertHidden",
+        "targetDescription": "Verify Start button no longer visible after starting",
+        "locatorHint": "button:has-text('Start')"
+      }
+    ],
+    "tags": [
+      "@e2e",
+      "@regression"
+    ]
+  }
+}

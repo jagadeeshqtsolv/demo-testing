@@ -1,0 +1,11 @@
+{
+  "id": "866f51fb-fa72-4cb0-bca5-9ffde6d32d61",
+  "requirementId": "f60be9d3-00ab-46b6-b63e-8f7799ece808",
+  "model": "manual",
+  "createdAt": "2026-07-10T12:38:30.006Z",
+  "plan": {
+    "version": 1,
+    "suiteName": "API Testing",
+    "cases": []
+  }
+}
